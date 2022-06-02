@@ -14,20 +14,11 @@ columns = 12
 val = cv.CALIB_CB_ADAPTIVE_THRESH + cv.CALIB_CB_FAST_CHECK + cv.CALIB_CB_NORMALIZE_IMAGE + cv.CALIB_CB_FILTER_QUADS
 criteria = (cv.TERM_CRITERIA_EPS + cv.TERM_CRITERIA_MAX_ITER, 30, 0.00001)                                             #forme le critère de recherche #modification du dernier critère
 
-objpoints, imgpoints, images , mtx, dist, rvecs, tvecs =findCorners(path, extention, row, columns, criteria, val)
+#objpoints, imgpoints, images , mtx, dist, rvecs, tvecs =findCorners(path, extention, row, columns, criteria, val)     
 images = glob.glob(path+'\*'+ extention,recursive = True)            
-# mtx, dist = read_XML(path_xml, name)
+mtx, dist = read_XML(path_xml, name)
 print(images)
 for fname in images:
     reforme_images(fname, path, extention, mtx, dist)
 print('flattenned')
-    # print("Camera Matrix : ", mtx)
-    # print("Distortion Parameters : ", dist)
-    # uncomment if findCorners ins used
-    # f = open(path +'\Matrices.txt', 'w')
-    # f.write(str(dist)+ '\n')
-    # f.write(str(mtx)+ '\n')
-# f.close()
-    # print("Matrices écrites")
-
 doctest.testmod()
